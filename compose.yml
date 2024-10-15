@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: mysql_db
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: "rookieXylm12"
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+    networks:
+    - server
+  
+  www:
+    build:
+      context: .
+      dockerfile: mysqli_connector_file
+    volumes:
+      - "./:/var/www/html"
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - server
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - server
+networks:
+  server:
+    driver: bridge
