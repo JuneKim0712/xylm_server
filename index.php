@@ -1,5 +1,6 @@
+<html>
+<body>
 <?php
-
 $connect = mysqli_connect(
     'db',
     'user1',
@@ -19,3 +20,6 @@ while($record = mysqli_fetch_assoc($result))
     echo 'Posted: '.$record['date'];
     echo '<hr>';
 }
+?>
+</body>
+</html>

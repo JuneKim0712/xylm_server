@@ -15,7 +15,7 @@ services:
   www:
     build:
       context: .
-      dockerfile: mysqli_connector_file
+      dockerfile: www_dockerfile
     volumes:
       - "./:/var/www/html"
     ports:
